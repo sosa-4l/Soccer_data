@@ -1,0 +1,4 @@
+*.log
+temp/
+keys.py
+passs.py
