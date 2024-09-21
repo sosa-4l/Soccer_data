@@ -1,6 +1,3 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.providers.postgres.operators.postgres import PostgresOperator
 from datetime import datetime
 import requests
 import json
@@ -8,14 +5,14 @@ import pandas as pd
 import time
 import keys
 
-def pull_from_api():
+def pull_from_api(league):
     url = "https://v3.football.api-sports.io/players"
     
     player_data=[]
     
     params = {
     'season': 2022,
-    'league': 39,
+    'league': league,
     'page': 1
     }
 
@@ -96,7 +93,7 @@ def pull_from_api():
             }
             flat_data.append(flat_dict)
     df = pd.DataFrame(flat_data) 
-    df.to_csv('player_stats.csv', index=False)
-    print(df)
+    df.to_csv('player_stats_laliga.csv', index=False)
+    #print(df)
     return(df)
         
