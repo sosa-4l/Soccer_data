@@ -2,3 +2,5 @@
 temp/
 keys.py
 passs.py
+webserver_config.py
+*.cfg
